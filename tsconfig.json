@@ -18,9 +18,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "./src/**/*",
+    "styled.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json"}]
 }
