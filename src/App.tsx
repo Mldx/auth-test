@@ -11,6 +11,7 @@ function App() {
       <Route path="main" element={<Main />}></Route>
       <Route path="signup" element={<SignUp />}></Route>
       <Route path="login" element={<Login />}></Route>
+      <Route path="*" element={<h1>404 page</h1>}></Route>
     </Routes>
   );
 }
