@@ -1,18 +1,32 @@
-import { Link, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store.ts';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 
 function Welcome() {
-  const { isAuth, email } = useSelector((state: RootState) => state.user);
-  return isAuth ? (
-    <>
-      <h1>Hello {email}!</h1>
-      <h2>
-        Click to <Link to="/main">app</Link>
-      </h2>
-    </>
-  ) : (
-    <Navigate replace to="login" />
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoading(false);
+      } else {
+        navigate('/login');
+      }
+    });
+    return unsubscribe;
+  });
+
+  return (
+    !loading && (
+      <>
+        <h1>Hello {auth.currentUser?.email}!</h1>
+        <h2>
+          Click to <Link to="/main">app</Link>
+        </h2>
+      </>
+    )
   );
 }
 
