@@ -18,15 +18,17 @@ function Welcome() {
     return unsubscribe;
   });
 
+  if (loading) {
+    return null;
+  }
+
   return (
-    !loading && (
-      <>
-        <h1>Hello {auth.currentUser?.email}!</h1>
-        <h2>
-          Click to <Link to="/main">app</Link>
-        </h2>
-      </>
-    )
+    <>
+      <h1>Hello {auth.currentUser?.email}!</h1>
+      <h2>
+        Click to <Link to="/main">app</Link>
+      </h2>
+    </>
   );
 }
 

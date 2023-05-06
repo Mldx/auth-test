@@ -18,16 +18,19 @@ function SignUp() {
 
     return unsubscribe;
   }, [auth, navigate]);
+
+  if (loading) {
+    return null;
+  }
+
   return (
-    !loading && (
-      <>
-        <h1>Register page</h1>
-        <RegisterForm></RegisterForm>
-        <p>
-          Already have account? <Link to="/login">Login please</Link>
-        </p>
-      </>
-    )
+    <>
+      <h1>Register page</h1>
+      <RegisterForm></RegisterForm>
+      <p>
+        Already have account? <Link to="/login">Login please</Link>
+      </p>
+    </>
   );
 }
 

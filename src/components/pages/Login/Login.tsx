@@ -18,16 +18,19 @@ function Login() {
 
     return unsubscribe;
   }, [auth, navigate]);
+
+  if (loading) {
+    return null;
+  }
+
   return (
-    !loading && (
-      <>
-        <h1>Login page</h1>
-        <LoginForm></LoginForm>
-        <p>
-          Haven&apos;t account? <Link to="/signup">Register please</Link>
-        </p>
-      </>
-    )
+    <>
+      <h1>Login page</h1>
+      <LoginForm></LoginForm>
+      <p>
+        Haven&apos;t account? <Link to="/signup">Register please</Link>
+      </p>
+    </>
   );
 }
 
